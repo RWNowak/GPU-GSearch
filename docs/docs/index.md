@@ -6,26 +6,31 @@ GPU-GSearch
 ###### Nazwa pełna
 GPU Game Search
 ###### Krótki opis
-A tool for recommending GPU’s to users on the basis of a chosen video game. The main goal of the software is to provide the user with the best possible GPU choice.
+Narzędzie służące do rekomendowania użytkownikom układów graficznych na podstawie wybranej gry wideo. Głównym celem oprogramowania jest zapewnienie użytkownikowi najlepszego możliwego wyboru GPU.
 
-2.	Prawa autorskie
-a.	Autorzy
-i.	Rafał Nowak
-b.	Licencja
-i.	MIT License
+##### Prawa autorskie
+###### Autorzy
+Rafał Nowak
+###### Licencja
+MIT License
 
-3.	Specyfikacja wymagań
-a.	Lista
-i.	Identyfikator
-ii.	Nazwa
-iii.	Opis
-iv.	Priorytet
-v.	Kategoria
+##### Specyfikacja wymagań
+| Identyfikator | Nazwa | Opis | Priorytet | Kategoria |
+| --------------|-------|------|-----------|-----------|
+| REQ-001 | Rekomendowanie kart graficznych | Oprogramowanie powinno być w stanie rekomendować użytkownikom odpowiednie karty graficzne dla wybranej gry komputerowej na podstawie wymagań sprzętowych gry.| Wysoki | Funkcjonalność |
+| REQ-002 | Filtrowanie wyników | Oprogramowanie powinno być w stanie filtrować wyniki wyszukiwania kart graficznych w oparciu o podane przez użytkownika kryteria.| Wysoki | Funkcjonalność |
+| REQ-003 | Oparcie na bazie danych | Oprogramowanie powinno być oparte na bazie danych specyfikacji gier komputerowych | Wysoki | Funkcjonalność |
+| REQ-004 | Interfejs graficzny | Oprogramowanie powinno posiadać przejrzysty interfejs ułatwiający interakcje. | Średni | Użyteczność |
+| REQ-005 | Optymalizacja | Oprogramowanie powinno działać szybko i sprawnie, aby użytkownicy mogli wydajnie pracować z aplikacją. | Średni | Wydajność |
+| REQ-006 | Język interfejsu | Oprogramowanie powinno mieć interfejs w języku angielskim. | Niski | Interfejs użytkownika |
 
-4.	Architektura systemu/oprogramowania
-a.	Rozwoju
-b.	Uruchomieniowa
-
-5.	Testy
-a.	Scenariusze testów
-b.	Sprawozdanie z wykonania scenariuszy testów
+##### Architektura oprogramowania
+###### Architektura rozwoju
+tbd
+###### Architektura uruchomieniowa
+tbd
+##### Testy
+###### Scenariusze testów
+tbd
+###### Sprawozdanie z wykonania scenariuszy testów
+tbd 

@@ -1,0 +1,4 @@
+site_name: GPU-GSearch
+nav:
+ - Polski: index.md
+ - English: english.md

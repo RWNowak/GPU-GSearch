@@ -1,4 +1,4 @@
-# GPU GAme Search
+# GPU Game Search
 Find the right GPU for your video game.
 
 ### POLISH

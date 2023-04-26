@@ -1,11 +1,17 @@
+  
   .bg-custom {
     background-color: #FDF7FF /* replace with your desired color value */
+  }
+  
+  .bg-dark-custom{
+    background-image: linear-gradient(15deg, #42374E 0%, #28242C 100%);
   }
 
   .image-container {
     position: relative;
     height: 50vh; /* set the height of the container to the height of the viewport */
     overflow: hidden; /* hide any overflow from the image */
+    margin-bottom: -54px;
   }
 
   .image-container img {

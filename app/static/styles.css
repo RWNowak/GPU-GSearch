@@ -1,80 +1,146 @@
-  
-  .bg-custom {
-    background-color: #FDF7FF /* replace with your desired color value */
-  }
-  
-  .bg-dark-custom{
-    background-image: linear-gradient(15deg, #42374E 0%, #28242C 100%);
-  }
 
-  .image-container {
-    position: relative;
-    height: 50vh; /* set the height of the container to the height of the viewport */
-    overflow: hidden; /* hide any overflow from the image */
-    margin-bottom: -54px;
-  }
+.bg-custom {
+  background-color: #FDF7FF /* replace with your desired color value */
+}
 
+.bg-dark-custom{
+  background-image: linear-gradient(15deg, #42374E 0%, #28242C 100%);
+}
+
+.image-container {
+  position: relative;
+  height: 50vh; /* set the height of the container to the height of the viewport */
+  overflow: hidden; /* hide any overflow from the image */
+  margin-bottom: -54px;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* scale the image to cover the entire container */
+}
+
+.search-container {
+  position: relative;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+  margin-top: 160px;
+  box-sizing: border-box;
+}
+
+.search-container input[type="text"] {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-container button {
+  width: 5%;
+  background-color: #A97BE2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #a97be2b5;
+}
+
+@media screen and (max-width: 768px) {
   .image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 10px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* scale the image to cover the entire container */
+    max-width: 100%;
+    margin-top: -20px
   }
-
-  .search-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 20px;
-    margin-top: 20px;
-    box-sizing: border-box;
-  }
-
-  .search-container input[type="text"] {
-    width: 40%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-  }
-
-  .search-container button {
-    width: 5%;
-    background-color: #A97BE2;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 768px) {
-    .image-container img {
-      max-width: 100%;
-    }
-    
-    .search-container {
-      padding: 10px;
-    }
-    
-    .search-container input[type="text"] {
-      width: 50%;
-      padding: 5px;
-    }
-    
-    .search-container button {
-      width: 30%;
-      padding: 5px;
-    }
-  }
-
   
+  .search-container {
+    padding: 10px;
+  }
+  
+  .search-container input[type="text"] {
+    width: 20%;
+    padding: 5px;
+  }
+  
+  .search-container button {
+    width: 10%;
+    padding: 5px;
+  }
+}
+.autocomplete-list {
+  position: absolute;
+  margin-top: 260px;
+  width: 38.8%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  margin-right: 74px;
+  z-index: 1;
+  padding: 0;
+  list-style-type: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-list li {
+  padding: 5px;
+  color: rgb(139, 110, 110);
+  cursor:pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.list-card-container {
+  display: flex;
+  border: 1px solid #28242C; /* Set the border properties as desired */
+  padding: 2px; /* Optional: Add padding to create space between the border and content */
+  margin-top:20px;
+  margin-left:20px;
+}
+
+.list-card-body {
+  margin-top:20px;
+  margin-left:20px;
+}
+
+.find_gpu {
+  margin-left: auto;
+  width: 40%;
+  margin-top: 25px;
+  margin-right: 10px;
+  height: 40px;
+  background-color: #A97BE2;
+  color: white;
+  border:#28242C;
+  padding: 0px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.find_gpu:hover {
+  background-color: #a97be2b5;
+}
+.img-game_list {
+  float: left;
+  margin-right: 10px; /* Adjust the margin as needed */
+  max-width: 150px;
+  max-height: 150px;
+}

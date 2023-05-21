@@ -29,9 +29,64 @@ MIT License
 
 ##### Architektura oprogramowania
 ###### Architektura rozwoju
-tbd
+Projekt GPU-GSearch jest napisany w języku Python we frameworku Flask. 
+
+Główną funkcjonalnością projektu jest możliwość wyszukiwania oraz wybierania gier z <a name="https://www.igdb.com/api">bazy danych IGDB za pomocą publicznego API.</a>
+
+Który jest zimplementowany przy użyciu <a name="https://github.com/twitchtv/igdb-api-python">wrappera napisanego dla języka Python</a>
+
+GPU-GSearch zawiera dwie funkcje wysyłające zapytania do API, z których pierwsza, get_games(name), wyszukuje i wybiera grę po nazwie wprowadzonej przez użytkownika, natomiast druga, get_games_full(id) wyszukuje gre po id z dodatkowymi szczegółami.
+
+Następnie za pomocą biblioteki mysql.connector wysyłane jest zapytanie do bazy danych w MySQL, w której zawierają się informacje na temat rekomendowanych oraz minimalnych kart graficznych dla wybranej gry.
+
+Do zaimplementowania interfejsu wykorzystana została <a name="https://getbootstrap.com/">biblioteka Bootstrap</a>
+
 ###### Architektura uruchomieniowa
-tbd
+Aby uruchomić projekt GPU-GSearch, należy wykonać trzy główne czynności:
+
+1. Przygotować środowisko Python Flask:
+Najpierw należy utworzyć plik `.flaskenv` w katalogu projektu (na tym samym poziomie co pakiet api)
+w którym zdefiniujesz 2 zmienne środowiskowe, które zostaną automatycznie ustawione
+po zainstalowaniu python-dotenv.
+Tak więc, plik musi zawierać następujące zmienne:
+```
+FLASK_ENV=development
+FLASK_APP=api/__init__.py
+```
+Następnie należy utworzyć <a name="https://docs.python.org/3/library/venv.html">utworzyć środowisko wirtualne</a>
+Po jego utworzeniu należy je aktywować. 
+W systemie Linux polecenie to zazwyczaj `source venv/bin/activate` 
+W systemie Windows jest to zazwyczaj `venv\Scripts\activate.bat`. 
+Jednak w szczególnych przypadkach należy ponownie zapoznać się z linkiem do tworzenia środowiska wirtualnego.
+
+Po skonfigurowaniu virtualenv, należy ostatecznie zainstalować zależności za pomocą `pip install -r requirements.txt`.
+
+Aby uruchomić projekt, należy użyć komendy `flask run`. 
+2. Skonfigurowanie połączenia do bazy danych
+Aby wyświetlać rekomendacje kart graficznych bazy danych, należy skonfigurować do niej połączenie.
+
+W pierwszej kolejności należy stworzyć <a name="https://dev.mysql.com/doc/mysql-getting-started/en/">bazę danych w MySQL</a> oraz dodać od niej odpowiednie tabele w schemacie, który musi zawierać pola:
+name
+max_gpu_nvidia
+min_gpu_nvidia
+min_gpu_amd
+max_gpu_amd
+w tabeli 'games'
+Zawierające odpowiednie karty graficzne dla danej gry.
+
+Następnie należy zmodyfikować informacje dostępu do bazy danych, w szczególności hasło oraz nazwę bazy danych
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password",
+  database="database" )
+
+3. Uzyskanie access tokena do API IGDB
+ 
+ Aby uzyskać token do API IGDB należy <a name="https://api-docs.igdb.com/#getting-started">postąpić zgodnie z instrukcją na stronie API</a> a następnie zaktualizować inicjalizator wrappera
+
+ wrapper = IGDBWrapper('clientName','accessToken')
 ##### Testy
 ###### Scenariusze testów
 tbd

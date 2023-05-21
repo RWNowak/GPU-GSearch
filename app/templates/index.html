@@ -48,48 +48,49 @@
           <div class="col-md-6">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
-                <div class="col-md-4">
+                <div class="col-md-4 wrapped-img">
                   <img src="{{cover_url}}" class="img-fluid rounded-start" alt="Game Image">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{{game_name}}</h5>
                     <h6 class="card-title">{{release_date_year}}</h6>
+                    {% if rating %}
                     <h6 class="card-title">Rating: <strong>{{rating}}/100</strong></h6>
                     <p class="card-text">{{summary}}</p>
+                    {% else %}
+                    <h6 class="card-title">Unrated</strong></h6>
+                    <p class="card-text">{{summary}}</p>
+                    {% endif %}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-6">
+            {% if max_gpu_nvidia %}
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">GPU Model</th>
-                  <th scope="col">Memory</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Recommended GPU (NVIDIA)</th>
+                  <th scope="col">Recommended GPU (AMD)</th>
+                  <th scope="col">Minimal GPU (NVIDIA)</th>
+                  <th scope="col">Minimal GPU (AMD)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{max_gpu_nvidia}} </td>
+                  <td>{{max_gpu_amd}}</td>
+                  <td>{{min_gpu_nvidia}}</td>
+                  <td>{{min_gpu_amd}}</td>
                 </tr>
               </tbody>
             </table>
+            {% else %}
+            <h2>There is no GPU data for this game</h2>
           </div>
+            {% endif %}
         </div>
         {% endif %}
       <div class="container">

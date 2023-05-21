@@ -24,6 +24,11 @@
   object-fit: cover; /* scale the image to cover the entire container */
 }
 
+.wrapped-img{
+  display: flex;
+  align-content: center;
+}
+
 .search-container {
   position: relative;
   z-index: 2;

@@ -1,12 +1,7 @@
-from urllib.parse import urljoin
-import mysql.connector, json, datetime
 from flask import Flask, render_template, jsonify, request
-from igdb.igdbapi_pb2 import GameResult
-from igdb.wrapper import IGDBWrapper
 
-import jinja2
-env = jinja2.Environment()
-env.globals.update(zip=zip)
+#MYSQL CONNECTION
+import mysql.connector, json, datetime
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -17,13 +12,22 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-app = Flask(__name__)
+#IMPORTS FOR THE IGDB API
+from igdb.igdbapi_pb2 import GameResult
+from igdb.wrapper import IGDBWrapper
 
 wrapper = IGDBWrapper('ed7hmod9n4zphsnxhr3n10hab2h296','97p1lbcr39cvkwswygawm9aq2fkhbm')
 
+## JINJA FOR INTEGRATING PYTHON CODE INTO THE .HTML FILES
+import jinja2
+env = jinja2.Environment()
+env.globals.update(zip=zip)
+
+app = Flask(__name__)
+
 ## CODE FOR API'S
 
-#Get names, id's and cover urls
+#GET GAME NAMES, URL'S AND ID'S. SEARCH BY NAME AND RETURN LISTS
 
 def get_games(name):
     byte_array = wrapper.api_request(
@@ -54,6 +58,8 @@ def get_games(name):
             
     return game_names, game_ids, cover_list, release_dates
 
+#GET GAME NAME, COVER URL, RELEASE DATE AND SUMMARY, SEARCH BY ID, RETURN VARIABLES
+
 def get_games_full(id):
     byte_array = wrapper.api_request(
         'games',
@@ -67,18 +73,40 @@ def get_games_full(id):
 
     game_name = game['name']
     game_id = game['id']
-    cover_url = game['cover'].get('url', '')
+    try:
+        cover_url = game['cover'].get('url', '')
+    except:
+        cover_url = None
     try:
         rating = round(game['rating'])
     except:
-        rating = 'Unrated';
-    summary = game['summary']
-    first_release_date=game['first_release_date']
-    if first_release_date:
-        first_release_date = datetime.datetime.fromtimestamp(first_release_date).strftime("%Y-%m-%d")
-        release_date_year = first_release_date[0:4]
+        rating = None
+    try:
+        summary = game['summary']
+    except:
+        summary = None
+    try:
+        first_release_date=game['first_release_date']
+        if first_release_date:
+            first_release_date = datetime.datetime.fromtimestamp(first_release_date).strftime("%Y-%m-%d")
+            release_date_year = first_release_date[0:4]
+    except:
+        release_date_year= None
 
     return game_name, game_id, cover_url, rating, summary, release_date_year
+
+#GET GPU'S FROM DATABASE, SEARCH BY NAME
+
+def getGPUs(name):
+    query = f"SELECT min_gpu_nvidia, max_gpu_nvidia, min_gpu_amd, max_gpu_amd FROM games WHERE name = '{name}'"
+    cursor.execute(query)
+    result = cursor.fetchone()
+    
+    if result:
+        min_gpu_nvidia, max_gpu_nvidia, min_gpu_amd, max_gpu_amd = result
+        return min_gpu_nvidia, max_gpu_nvidia, min_gpu_amd, max_gpu_amd
+    else:
+        return None
 
 ## ROUTES
 
@@ -95,9 +123,20 @@ def search():
     return render_template('list.html', game_names=game_names, game_ids=game_ids, cover_list=cover_list, release_dates=release_dates, zip=zip)
 @app.route('/find_gpu', methods=['POST'])
 def find_gpu():
+    #GET GAME INFORMATION
     id = request.form.get('game_id')
     game_name, game_id, cover_url, rating, summary, release_date_year = get_games_full(id)
-    return render_template('index.html', game_name=game_name, game_id=game_id, cover_url=cover_url, rating=rating, summary=summary, release_date_year=release_date_year, zip=zip)
+    #GET GPU INFORMATION
+    try:
+        min_gpu_nvidia, max_gpu_nvidia, min_gpu_amd, max_gpu_amd = getGPUs(game_name)
+    except:
+        min_gpu_nvidia = None
+        max_gpu_nvidia = None
+        min_gpu_amd = None
+        max_gpu_amd = None
+    return render_template('index.html', game_name=game_name, game_id=game_id, cover_url=cover_url, rating=rating, summary=summary, 
+                           release_date_year=release_date_year, min_gpu_nvidia=min_gpu_nvidia, max_gpu_nvidia=max_gpu_nvidia, 
+                           min_gpu_amd=min_gpu_amd, max_gpu_amd=max_gpu_amd, zip=zip)
 @app.route('/list')
 def list():
     return render_template('list.html')

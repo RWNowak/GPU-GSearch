@@ -27,13 +27,16 @@
         </div>
       </div>
     </nav>
-    {% for game, url, release_date in zip(game_names, cover_list, release_dates) %}
+    {% for game, url, release_date, game_id in zip(game_names, cover_list, release_dates, game_ids) %}
     <div class="list-card-container">
       <img src="{{ url }}" class="img-game_list" alt="Game Image">
         <div class="list-card-body">
           <h5 class="card-title">{{ game }}<h6>({{release_date}})</h6></h5>
         </div>
-        <button class="find_gpu" id ="find_gpu">Find GPU</button>
+        <form class="find_gpu_form" action="{{ url_for('find_gpu') }}" method="POST">
+          <button class="find_gpu" name="find_gpu" id="find_gpu">Find GPU</button>
+          <input type="hidden" name="game_id" value="{{ game_id }}">
+        </form>
     </div>    
   {% endfor %}
   <div class="container">

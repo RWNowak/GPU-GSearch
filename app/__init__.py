@@ -4,7 +4,6 @@ from flask import Flask, render_template, jsonify, request
 from igdb.igdbapi_pb2 import GameResult
 from igdb.wrapper import IGDBWrapper
 
-
 import jinja2
 env = jinja2.Environment()
 env.globals.update(zip=zip)
@@ -50,52 +49,36 @@ def get_games(name):
             release_date=game.get('first_release_date')
             if release_date:
                 release_date = datetime.datetime.fromtimestamp(release_date).strftime("%Y-%m-%d")
-                release_dates.append(release_date)
+                release_date_year = release_date[0:4]
+                release_dates.append(release_date_year)
             
     return game_names, game_ids, cover_list, release_dates
-    
 
-# Get game names and ID's from searching by name
-
-#def get_games(name):
+def get_games_full(id):
     byte_array = wrapper.api_request(
-        'games.pb',
-        f'fields id, name; search "{name}"; where version_parent = null;'
+        'games',
+        f'fields name, cover.url, first_release_date, rating, summary; where id = {id};'
     )
-    games_message = GameResult()
-    games_message.ParseFromString(byte_array)
 
-    games_dict = {}
-    for game in games_message.games:
-        games_dict[game.id] = (game.name)
+    response_text = byte_array.decode('utf-8')
+    data = json.loads(response_text)
 
-    return games_dict
+    game = data[0]  # Assuming there is only one game in the data
 
-#Get ID of the chosen game
-
-# def get_game_id(name):
-    byte_array = wrapper.api_request(
-            'games.pb',
-            f'fields id, name; search "{name}"; where version_parent = null;'
-          )
-    games_message = GameResult()
-    games_message.ParseFromString(byte_array) 
-    game_id = games_message.games[0].id
-    return game_id
-
-#Get cover URL
-
-# def get_game_cover(game_id):
-    byte_array = wrapper.api_request(
-                'covers',
-                f'fields url; where id = {game_id};'
-            )
-    json_response = json.loads(byte_array.decode())
+    game_name = game['name']
+    game_id = game['id']
+    cover_url = game['cover'].get('url', '')
     try:
-        url = json_response[0]['url']
+        rating = round(game['rating'])
     except:
-        url = ""
-    return url
+        rating = 'Unrated';
+    summary = game['summary']
+    first_release_date=game['first_release_date']
+    if first_release_date:
+        first_release_date = datetime.datetime.fromtimestamp(first_release_date).strftime("%Y-%m-%d")
+        release_date_year = first_release_date[0:4]
+
+    return game_name, game_id, cover_url, rating, summary, release_date_year
 
 ## ROUTES
 
@@ -110,6 +93,11 @@ def search():
     search_term = request.form.get('search_term')
     game_names, game_ids, cover_list, release_dates = get_games(search_term)
     return render_template('list.html', game_names=game_names, game_ids=game_ids, cover_list=cover_list, release_dates=release_dates, zip=zip)
+@app.route('/find_gpu', methods=['POST'])
+def find_gpu():
+    id = request.form.get('game_id')
+    game_name, game_id, cover_url, rating, summary, release_date_year = get_games_full(id)
+    return render_template('index.html', game_name=game_name, game_id=game_id, cover_url=cover_url, rating=rating, summary=summary, release_date_year=release_date_year, zip=zip)
 @app.route('/list')
 def list():
     return render_template('list.html')

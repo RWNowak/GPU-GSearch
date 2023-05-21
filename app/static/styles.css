@@ -111,9 +111,18 @@
 .list-card-container {
   display: flex;
   border: 1px solid #28242C; /* Set the border properties as desired */
+  border-radius: 5px 5px 5px 0;
   padding: 2px; /* Optional: Add padding to create space between the border and content */
   margin-top:20px;
   margin-left:20px;
+}
+
+.find_gpu_form {
+  display: flex;
+  width: 80%;
+  position: absolute;
+  flex-direction: row-reverse;
+  margin-left: 80px;
 }
 
 .list-card-body {
@@ -122,10 +131,9 @@
 }
 
 .find_gpu {
-  margin-left: auto;
-  width: 40%;
   margin-top: 25px;
   margin-right: 10px;
+  width: 40%;
   height: 40px;
   background-color: #A97BE2;
   color: white;

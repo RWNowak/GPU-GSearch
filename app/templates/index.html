@@ -43,20 +43,21 @@
         </form>
       </div>
       <div class="container mt-5">
-        {% if name %}
+        {% if game_name %}
         <div class="row">
           <div class="col-md-6">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                    <h6 class="card-title">{{release_date}}</h6>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                  </div>
-                </div>
                 <div class="col-md-4">
                   <img src="{{cover_url}}" class="img-fluid rounded-start" alt="Game Image">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{game_name}}</h5>
+                    <h6 class="card-title">{{release_date_year}}</h6>
+                    <h6 class="card-title">Rating: <strong>{{rating}}/100</strong></h6>
+                    <p class="card-text">{{summary}}</p>
+                  </div>
                 </div>
               </div>
             </div>

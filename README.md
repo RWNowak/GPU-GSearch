@@ -161,7 +161,7 @@ The file should contain the following variables:
 FLASK_ENV=development
 FLASK_APP=api/__init__.py
 ```
-Next, create a virtual environment. You can refer to the documentation on creating a venv. Once created, activate the virtual environment.
+Next, create a virtual environment. <a href="https://docs.python.org/3/library/venv.html">You can refer to the documentation on creating a venv.</a> Once created, activate the virtual environment.
 ```
 On Linux: source venv/bin/activate
 On Windows: venv\Scripts\activate.bat
@@ -174,7 +174,7 @@ To run the project, use the command 'flask run'.
 2. Configure the database connection:
 
 To display graphics card recommendations from the database, you need to configure the connection to the database.
-First, create a MySQL database and add the necessary tables with the following fields in the 'games' table
+First, <a href="https://dev.mysql.com/doc/mysql-getting-started/en/">create a MySQL database</a> and add the necessary tables with the following fields in the 'games' table
 ```
 name
 max_gpu_nvidia

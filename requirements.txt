@@ -1,0 +1,5 @@
+flask
+mysql-connector-python
+protobuf
+igdb-api-python
+Jinja2

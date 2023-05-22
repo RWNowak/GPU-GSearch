@@ -7,7 +7,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="123412341234",
-  database="gpusearch"
+  database="gpusearch"  
 )
 
 cursor = mydb.cursor()
@@ -137,6 +137,3 @@ def find_gpu():
     return render_template('index.html', game_name=game_name, game_id=game_id, cover_url=cover_url, rating=rating, summary=summary, 
                            release_date_year=release_date_year, min_gpu_nvidia=min_gpu_nvidia, max_gpu_nvidia=max_gpu_nvidia, 
                            min_gpu_amd=min_gpu_amd, max_gpu_amd=max_gpu_amd, zip=zip)
-@app.route('/list')
-def list():
-    return render_template('list.html')

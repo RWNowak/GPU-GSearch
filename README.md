@@ -51,7 +51,7 @@ GPU-GSearch zawiera dwie funkcje wysyłające zapytania do API, z których pierw
 
 Następnie za pomocą biblioteki mysql.connector wysyłane jest zapytanie do bazy danych w MySQL, w której zawierają się informacje na temat rekomendowanych oraz minimalnych kart graficznych dla wybranej gry.
 
-Do zaimplementowania interfejsu wykorzystana została <a name="https://getbootstrap.com/">biblioteka Bootstrap</a>
+Do zaimplementowania interfejsu wykorzystana została <a name="https://getbootstrap.com/">biblioteka Bootstrap</a>, natomist commity zostały stworzone według metody<a name="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>
 
 ###### Architektura uruchomieniowa
 Aby uruchomić projekt GPU-GSearch, należy wykonać trzy główne czynności:
@@ -107,9 +107,21 @@ mydb = mysql.connector.connect(
 
 ##### Testy
 ###### Scenariusze testów
-tbd
+1. test_home_page_with_fixture: Ten test sprawdza, czy strona główna ("/") zwraca poprawną odpowiedź po żądaniu metodą GET.
+
+2. test_about_page_with_fixture: Ten test sprawdza, czy strona informacyjna ("/about") zwraca poprawną odpowiedź po żądaniu metodą GET.
+
+3. test_search_game_with_fixture: Ten test sprawdza, czy strona wyszukiwania ("/search") zwraca poprawny szablon listy po żądaniu metodą POST z poprawnym terminem wyszukiwania. Potwierdza również, czy odpowiedź zawiera oczekiwany termin wyszukiwania.
+
+4. test_search_empty_with_fixture: Ten test sprawdza, czy strona wyszukiwania ("/search") zwraca wiadomość błędu po żądaniu metodą POST z niepoprawnym pustym terminem wyszukiwania. Wyodrębnia wiadomość błędu z odpowiedzi i porównuje ją z oczekiwaną wiadomością.
+
+5. test_home_page_post_with_fixture: Ten test sprawdza, czy przesłanie żądania do strony głównej ("/") zwraca kod statusu "405" (Metoda niedozwolona), co wskazuje, że metoda POST nie jest dozwolona na tej stronie.
+
+6. test_find_gpu_valid_id_with_fixture: Ten test sprawdza, czy strona wyszukiwania GPU ("/find_gpu") zwraca poprawną odpowiedź po żądaniu metodą POST z poprawnymi danymi. Potwierdza również, czy odpowiedź zawiera oczekiwaną grę.
 ###### Sprawozdanie z wykonania scenariuszy testów
-tbd 
+Wszystkie scenariusze testowe zostały pomyślnie wykonane bez żadnych błędów. Aplikacja Flask działała zgodnie z oczekiwaniami i zwróciła poprawne odpowiedzi dla różnych ścieżek i danych wejściowych.
+
+Podsumowanie potwierdza pomyślne wykonanie scenariuszy testowych i wskazuje, że aplikacja działa poprawnie zgodnie z obecnym zakresem testów.
 
 ### ENGLISH
 
@@ -139,7 +151,15 @@ MIT License
 
 ##### Software architecture
 ###### Development architecture
-tbd
+The GPU-GSearch project is written in Python using the Flask framework.
+
+The main functionality of the project is the ability to search and select games from the <a href="https://www.igdb.com/api">IGDB database using a public API</a>. It is implemented using a <a href="https://github.com/twitchtv/igdb-api-python">Python wrapper</a> for the API.
+
+GPU-GSearch includes two functions that send requests to the API. The first function, get_games(name), searches and selects a game based on the name entered by the user. The second function, get_games_full(id), searches for a game based on its ID and retrieves additional details.
+
+The project uses the mysql.connector library to send queries to a MySQL database, which contains information about recommended and minimum graphics cards for the selected game.
+
+The interface is implemented using the <a href="https://getbootstrap.com/">Bootstrap library</a>. Commits are structured according to the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> method.
 ###### Startup architecture
 To run the GPU-GSearch project, you need to perform three main steps:
 
@@ -190,6 +210,20 @@ wrapper = IGDBWrapper('clientName', 'accessToken')
 ```
 ##### Tests
 ###### Test scenarios
-tbd
+1. test_home_page_with_fixture: This test ensures that the home page ("/") returns a valid response when requested with the GET method.
+
+2. test_about_page_with_fixture: This test verifies that the about page ("/about") returns a valid response when requested with the GET method.
+
+3. test_search_game_with_fixture: This test checks that the search page ("/search") returns the valid list template when requested with a valid search term using the POST method. It also confirms that the response contains the expected search term.
+
+4. test_search_empty_with_fixture: This test validates that the search page ("/search") returns the error message when requested with an invalid empty search term using the POST method. It extracts the error message from the response and compares it with the expected message.
+
+5. test_home_page_post_with_fixture: This test ensures that posting to the home page ("/") returns a "405" (Method Not Allowed) status code, indicating that the POST method is not allowed on this page.
+
+6. test_find_gpu_valid_id_with_fixture: This test checks that the find GPU page ("/find_gpu") returns a valid response when requested with valid data using the POST method. It also confirms that the response contains the expected game.
 ###### Test scenarios execution report
-tbd
+Test Scenario Execution Report:
+
+All test scenarios executed successfully without any failures. The Flask application performed as expected and returned valid responses for different routes and inputs.
+
+This summary acknowledges the successful execution of the test scenarios and indicates that the application is functioning correctly based on the current test coverage.

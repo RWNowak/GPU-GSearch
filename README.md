@@ -39,7 +39,7 @@ GPU-GSearch zawiera dwie funkcje wysyłające zapytania do API, z których pierw
 
 Następnie za pomocą biblioteki mysql.connector wysyłane jest zapytanie do bazy danych w MySQL, w której zawierają się informacje na temat rekomendowanych oraz minimalnych kart graficznych dla wybranej gry.
 
-Do zaimplementowania interfejsu wykorzystana została <a href="https://getbootstrap.com/">biblioteka Bootstrap</a>, natomist commity zostały stworzone według metody<a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>
+Do zaimplementowania interfejsu wykorzystana została <a href="https://getbootstrap.com/">biblioteka Bootstrap</a>, natomist commity zostały stworzone według metody <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>
 
 ###### Architektura uruchomieniowa
 Aby uruchomić projekt GPU-GSearch, należy wykonać trzy główne czynności:

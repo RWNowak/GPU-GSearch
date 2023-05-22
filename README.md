@@ -41,6 +41,18 @@ Następnie za pomocą biblioteki mysql.connector wysyłane jest zapytanie do baz
 
 Do zaimplementowania interfejsu wykorzystana została <a name="https://getbootstrap.com/">biblioteka Bootstrap</a>
 
+Projekt GPU-GSearch jest napisany w języku Python we frameworku Flask. 
+
+Główną funkcjonalnością projektu jest możliwość wyszukiwania oraz wybierania gier z <a name="https://www.igdb.com/api">bazy danych IGDB za pomocą publicznego API.</a>
+
+Który jest zimplementowany przy użyciu <a name="https://github.com/twitchtv/igdb-api-python">wrappera napisanego dla języka Python</a>
+
+GPU-GSearch zawiera dwie funkcje wysyłające zapytania do API, z których pierwsza, get_games(name), wyszukuje i wybiera grę po nazwie wprowadzonej przez użytkownika, natomiast druga, get_games_full(id) wyszukuje gre po id z dodatkowymi szczegółami.
+
+Następnie za pomocą biblioteki mysql.connector wysyłane jest zapytanie do bazy danych w MySQL, w której zawierają się informacje na temat rekomendowanych oraz minimalnych kart graficznych dla wybranej gry.
+
+Do zaimplementowania interfejsu wykorzystana została <a name="https://getbootstrap.com/">biblioteka Bootstrap</a>
+
 ###### Architektura uruchomieniowa
 Aby uruchomić projekt GPU-GSearch, należy wykonać trzy główne czynności:
 

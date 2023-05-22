@@ -164,3 +164,11 @@
   max-width: 150px;
   max-height: 150px;
 }
+.error_container{
+  display: flex;
+  position: relative;
+  color: white;
+  font-weight: 600;
+  align-items: center;
+  flex-direction: column;
+}

@@ -41,6 +41,11 @@
             <li>Game</li>
           </ul> -->
         </form>
+        {% if error_message %}
+        <div class='error_container'>
+          <p>{{error_message}}<p>
+        </div>
+        {% endif %}
       </div>
       <div class="container mt-5">
         {% if game_name %}

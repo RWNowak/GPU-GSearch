@@ -210,8 +210,6 @@ wrapper = IGDBWrapper('clientName', 'accessToken')
 
 6. test_find_gpu_valid_id_with_fixture: This test checks that the find GPU page ("/find_gpu") returns a valid response when requested with valid data using the POST method. It also confirms that the response contains the expected game.
 ###### Test scenarios execution report
-Test Scenario Execution Report:
-
 All test scenarios executed successfully without any failures. The Flask application performed as expected and returned valid responses for different routes and inputs.
 
 This summary acknowledges the successful execution of the test scenarios and indicates that the application is functioning correctly based on the current test coverage.

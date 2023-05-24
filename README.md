@@ -31,7 +31,7 @@ MIT License
 ###### Architektura rozwoju
 Projekt GPU-GSearch jest napisany w języku Python we frameworku Flask. 
 
-Główną funkcjonalnością projektu jest możliwość wyszukiwania oraz wybierania gier z <a name="https://www.igdb.com/api">bazy danych IGDB za pomocą publicznego API.</a>
+Główną funkcjonalnością projektu jest możliwość wyszukiwania oraz wybierania gier z <a href="https://www.igdb.com/api">bazy danych IGDB za pomocą publicznego API.</a>
 
 Który jest zimplementowany przy użyciu <a href="https://github.com/twitchtv/igdb-api-python">wrappera napisanego dla języka Python</a>
 

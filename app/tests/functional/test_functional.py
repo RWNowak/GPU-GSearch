@@ -62,3 +62,30 @@ def test_find_gpu_valid_id_with_fixture(test_client):
     assert response.status_code == 200
     assert b'Apex Legends' in response.data  # Replace 'Game Name' with an expected game name
     
+def test_find_gpu_invalid_id_with_fixture(test_client):
+    """
+    GIVEN a Flask application configured for testing
+    WHEN the '/find_gpu' page is requested with an invalid (empty) game ID (POST)
+    THEN check that the response returns a '500' status code
+    """
+    response = test_client.post('/find_gpu', data={'game_id': ''})
+    assert response.status_code == 500
+
+def test_home_page_nonexistent_route_with_fixture(test_client):
+    """
+    GIVEN a Flask application configured for testing
+    WHEN a nonexistent route is requested (GET)
+    THEN check that the response returns a '404' (Not Found) status code
+    """
+    response = test_client.get('/nonexistent')
+    assert response.status_code == 404
+
+
+def test_about_page_post_with_fixture(test_client):
+    """
+    GIVEN a Flask application configured for testing
+    WHEN the '/about' page is posted to (POST)
+    THEN check that a '405' (Method Not Allowed) status code is returned
+    """
+    response = test_client.post('/about')
+    assert response.status_code == 405

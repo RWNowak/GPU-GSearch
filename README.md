@@ -106,6 +106,13 @@ mydb = mysql.connector.connect(
 5. test_home_page_post_with_fixture: Ten test sprawdza, czy przesłanie żądania do strony głównej ("/") zwraca kod statusu "405" (Metoda niedozwolona), co wskazuje, że metoda POST nie jest dozwolona na tej stronie.
 
 6. test_find_gpu_valid_id_with_fixture: Ten test sprawdza, czy strona wyszukiwania GPU ("/find_gpu") zwraca poprawną odpowiedź po żądaniu metodą POST z poprawnymi danymi. Potwierdza również, czy odpowiedź zawiera oczekiwaną grę.
+
+7. test_find_gpu_invalid_id_with_fixture: Testuje zachowanie strony '/find_gpu' w przypadku podania nieprawidłowego (pustego) identyfikatora gry. Test sprawdza, czy kod odpowiedzi powinien wynosić '500' (Internal Server Error).
+
+8. test_home_page_nonexistent_route_with_fixture: Weryfikuje odpowiedź dla nieistniejącej ścieżki. Test wysyła żądanie GET do nieistniejącej ścieżki i sprawdza, czy kod odpowiedzi powinien wynosić '404' (Not Found).
+
+9. test_about_page_post_with_fixture: Sprawdza zachowanie strony '/about' podczas żądania typu POST. Test sprawdza, czy powinien zostać zwrócony kod statusu '405' (Method Not Allowed).
+
 ###### Sprawozdanie z wykonania scenariuszy testów
 Wszystkie scenariusze testowe zostały pomyślnie wykonane bez żadnych błędów. Aplikacja Flask działała zgodnie z oczekiwaniami i zwróciła poprawne odpowiedzi dla różnych ścieżek i danych wejściowych.
 
@@ -209,6 +216,13 @@ wrapper = IGDBWrapper('clientName', 'accessToken')
 5. test_home_page_post_with_fixture: This test ensures that posting to the home page ("/") returns a "405" (Method Not Allowed) status code, indicating that the POST method is not allowed on this page.
 
 6. test_find_gpu_valid_id_with_fixture: This test checks that the find GPU page ("/find_gpu") returns a valid response when requested with valid data using the POST method. It also confirms that the response contains the expected game.
+
+7. test_find_gpu_invalid_id_with_fixture: It tests the behavior of the '/find_gpu' page when an invalid (empty) game ID is provided. The test asserts that the response status code should be '500' (Internal Server Error).
+
+8. test_home_page_nonexistent_route_with_fixture: It verifies the response of a nonexistent route. The test sends a GET request to a nonexistent route and asserts that the response status code should be '404' (Not Found).
+
+9. test_about_page_post_with_fixture: It checks the behavior of the '/about' page when it is accessed with a POST request. The test asserts that a '405' (Method Not Allowed) status code should be returned.
+
 ###### Test scenarios execution report
 All test scenarios executed successfully without any failures. The Flask application performed as expected and returned valid responses for different routes and inputs.
 
